@@ -2,20 +2,20 @@ const Web3 = require('web3')
 const EthereumTx = require('ethereumjs-tx')
 
 const web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rinkeby.infura.io/YOURKEY')
+    new Web3.providers.HttpProvider('https://rinkeby.infura.io/SMGlsePhqwYyzV2C0PCn')
 )
 
 //console.log(CreateAccount())
-Send(
+/*Send(
   '0xd55D1D2DF6e3dC90EF5ae84C7f1a01dcB1385900',
   'b4e205bfbca22eae09564c9c5ee74949185aceee3afacfae13c1e9eaade5961d',
   '0x7DeB861b373AE4e54F00e509855942Ce3bd1Edf7',
   '.0001'
-)
+)*/
 
 //CheckBalance('0xd55D1D2DF6e3dC90EF5ae84C7f1a01dcB1385900')
 //GetTransaction('0x2d1bac54caa992e0014aef34e2077ceb308f7d6f6efe24c1cdde510a751e7ea9')
-
+isTransactionSuccessful('0x2d1bac54caa992e0014aef34e2077ceb308f7d6f6efe24c1cdde510a751e7ea9')
 
 function CreateAccount() {
   var account = web3.eth.accounts.create(web3.utils.randomHex(32))
@@ -36,6 +36,28 @@ async function GetTransaction(transactionHash) {
   try {
     var transaction = await web3.eth.getTransaction(transactionHash)
     console.log(transaction)
+    return transaction
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
+async function GetTransactionReceipt(transactionHash) {
+  try {
+    var transaction = await web3.eth.getTransactionReceipt(transactionHash)
+    console.log(transaction)
+    return transaction
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
+async function isTransactionSuccessful(transactionHash) {
+  try {
+    var transaction = await web3.eth.getTransactionReceipt(transactionHash)
+    console.log(transaction.status)
     return transaction
   }
   catch (err) {
