@@ -2,7 +2,8 @@ const Web3 = require('web3')
 const EthereumTx = require('ethereumjs-tx')
 
 const web3 = new Web3(
-    new Web3.providers.HttpProvider('https://rinkeby.infura.io/SMGlsePhqwYyzV2C0PCn')
+  new Web3.providers.HttpProvider('https://mainnet.infura.io/xgkzrFPUUo6yHXFPyVnL')
+    //new Web3.providers.HttpProvider('https://rinkeby.infura.io/SMGlsePhqwYyzV2C0PCn')
 )
 
 //console.log(CreateAccount())
@@ -12,10 +13,10 @@ const web3 = new Web3(
   '0x7DeB861b373AE4e54F00e509855942Ce3bd1Edf7',
   '.0001'
 )*/
-
+CheckBalance('0x15e9CD8D2E2bD81f42906C6038b06De9a5aafe9A')
 //CheckBalance('0xd55D1D2DF6e3dC90EF5ae84C7f1a01dcB1385900')
 //GetTransaction('0x2d1bac54caa992e0014aef34e2077ceb308f7d6f6efe24c1cdde510a751e7ea9')
-isTransactionSuccessful('0x2d1bac54caa992e0014aef34e2077ceb308f7d6f6efe24c1cdde510a751e7ea9')
+//isTransactionSuccessful('0x2d1bac54caa992e0014aef34e2077ceb308f7d6f6efe24c1cdde510a751e7ea9')
 
 function CreateAccount() {
   var account = web3.eth.accounts.create(web3.utils.randomHex(32))
@@ -28,7 +29,7 @@ function CreateAccount() {
 
 async function CheckBalance(address) {
   var balance = await web3.eth.getBalance(address)
-  console.log(balance)
+  console.log(web3.utils.fromWei(balance))
   return balance
 }
 
